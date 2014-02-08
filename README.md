@@ -38,7 +38,7 @@ By default, the starter app listens on port 8000. This can be changed using the 
 
 Folder structure
 ----------------
-
+<pre>
 +-- README.md - this file
 +-- mongo-data
 |   +-- start mongodb.bat - Windows batch file
@@ -58,3 +58,4 @@ Folder structure
     |   +-- templates - Handlebars templates
     |   +-- index.html 
     +--- Gruntfile.js - Grunt configuration; will build the app to the 'dist' folder
+</pre>
