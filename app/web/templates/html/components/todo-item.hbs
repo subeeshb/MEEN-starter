@@ -1,0 +1,5 @@
+<div {{bind-attr class=":todo-item item.isComplete:completed"}}>
+	{{view Ember.Checkbox checkedBinding="item.isComplete"}}
+	{{item.text}}
+	<button class="delete-button" {{action deleteItem}}>X</button>
+</div>

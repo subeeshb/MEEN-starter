@@ -1,0 +1,21 @@
+{
+  "name": "cards",
+  "description": "cards",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "hbs": ">= 2.0.2",
+    "mongojs": "~0.9.10"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-replace": "~0.4.4",
+    "grunt-shell": "~0.3.1",
+    "grunt-contrib-compass": "~0.7.0",
+    "grunt-ember-handlebars": "~0.7.0",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}

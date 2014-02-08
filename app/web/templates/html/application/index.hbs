@@ -1,0 +1,11 @@
+<div class="container">
+	<h1 class="title">Todo List</h1>
+
+	{{new-todo onAdd="newItemAdded"}}
+
+	<div class="todo-list">
+	{{#each item in model}}
+		{{todo-item item=item onDelete="itemDeleted"}}
+	{{/each}}
+	</div>
+</div>

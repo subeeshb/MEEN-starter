@@ -1,0 +1,61 @@
+@import "compass/reset";
+@import "fonts";
+
+$LIGHT_COLOR: #f0f0f0;
+$DARK_COLOR: #151515;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: $LIGHT_COLOR;
+  overflow-x: hidden;
+}
+
+.container {
+  font-family: Lato, sans-serif;
+  font-size: 62.5%;
+  margin: 3px;
+}
+
+.title {
+  font-size: 1.8rem;
+}
+
+.todo-item-panel {
+  margin: 3px 5px;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px;
+}
+
+.todo-item {
+  @extend .todo-item-panel;
+  font-size: 1.1rem;
+  min-height: 25px;
+
+  &.completed {
+    text-decoration: line-through;
+  }
+
+  .delete-button {
+    float: right;
+  }
+}
+
+.new-todo-panel {
+  @extend .todo-item-panel;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+
+  * {
+    font-size: 1.3rem;
+  }
+
+  .add-button {
+    padding: 1px 25px;
+  }
+
+  .item-text {
+    width: 75%;
+  }
+}

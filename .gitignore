@@ -1,0 +1,7 @@
+app/.sass-cache/
+app/dist/
+app/node_modules/
+mongo_data/journal/
+mongo_data/mng_starter_dev.0
+mongo_data/mng_starter_dev.1
+mongo_data/mng_starter_dev.ns
