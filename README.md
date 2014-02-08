@@ -8,7 +8,7 @@ The starter kit implements a simple to-do list, saving items to a MongoDB collec
 Pre-requisites
 --------------
 
-Ensure Node.js and MongoDB are already installed. Refer to the documentation for each for installation instructions.
+Ensure Node.js and MongoDB are already installed. Stylesheets are written in Sass, so you'll need Ruby and Compass too. Refer to the documentation for each for installation instructions.
 
 The application uses Grunt to build the application. Install Grunt using npm with the following command.
 
