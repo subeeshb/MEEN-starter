@@ -75,7 +75,8 @@ module.exports = function(grunt) {
                         cwd: '.',
                         src: [
                             'server.js',
-                            'package.json'
+                            'package.json',
+                            'Procfile'
                         ],
                         dest: 'dist/'
                     },
@@ -141,7 +142,7 @@ module.exports = function(grunt) {
                     'dist/config/index.js' : [ 'dist/config/index.js' ]
                 }
             },
-            beta: {
+            prod: {
                 options: {
                     variables: {
                         'activeConfig': 'beta'
@@ -193,8 +194,8 @@ module.exports = function(grunt) {
         'shell:runNodeServer'
     ]);
 
-    grunt.registerTask('beta', [
+    grunt.registerTask('prod', [
         'common',
-        'replace:beta'
+        'replace:prod'
     ]);
 };
