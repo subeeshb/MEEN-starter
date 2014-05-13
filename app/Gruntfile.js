@@ -15,19 +15,15 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     processName: function(filePath) {
-                        var data = filePath.substring(filePath.lastIndexOf('/') + 1,filePath.length);
-                        var arr=[];
-                        arr = data.split(".");
-                        fullName = (filePath.indexOf('/components/') > -1) ? 'components/'+arr[0] : arr[0];
-                        return fullName;
+                        return filePath.replace('web/templates/', '').split('.')[0];
                     }
                 },
                 files: [
                     {
                         expand: true,     // Enable dynamic expansion.
-                        cwd: 'web/templates/html/',      // Src matches are relative to this path.
+                        cwd: 'web/templates/',      // Src matches are relative to this path.
                         src: ['**/*.hbs'], // Actual pattern(s) to match.
-                        dest: 'web/templates/js/',   // Destination path prefix.
+                        dest: 'web/build/handlebars/',   // Destination path prefix.
                         ext: '.js'   // Dest filepaths will have this extension.
                     }
                 ]
@@ -37,23 +33,24 @@ module.exports = function(grunt) {
         concat: {
             library:{
                 src:[
-                    'web/scripts/lib/jquery.min.js',
-                    'web/scripts/lib/handlebars-1.1.2.js',
-                    'web/scripts/lib/ember-1.3.2.js'
+                    'web/libs/jquery.min.js',
+                    'web/libs/handlebars-1.1.2.js',
+                    'web/libs/ember-1.3.2.js'
                     ],
                 dest:'dist/web/scripts/libs.js'
             },
             application: {
                 src: [
-                    'web/templates/js/**/*.js',
+                    'web/build/handlebars/**/*.js',
                     'web/scripts/app/app.js',
-                    'web/scripts/app/components/*.js'
+                    'web/scripts/app/components/*.js',
+                    'web/scripts/modules/**/*.js'
                 ],
                 dest:'dist/web/scripts/app.js'
             },
             cssOutput: {
                 src: [
-                    'web/stylesheets/css/*.css'
+                    'web/build/css/*.css'
                 ],
                 dest: 'dist/web/stylesheets/styles.css'
             }
@@ -74,7 +71,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: '.',
                         src: [
-                            'server.js',
+                            'server/server.js',
                             'package.json',
                             'Procfile'
                         ],
@@ -82,32 +79,40 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'config',
+                        cwd: 'server',
+                        src: [
+                            'server.js'
+                        ],
+                        dest: 'dist'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'server/config',
                         src: ['**'],
                         dest: 'dist/config'
                     },
                     {
                         expand: true,
-                        cwd: 'constants',
+                        cwd: 'server/constants',
                         src: ['**'],
                         dest: 'dist/constants'
                     },
                     {
                         expand: true,
-                        cwd: 'controllers',
+                        cwd: 'server/controllers',
                         src: ['**'],
                         dest: 'dist/controllers'
                     },
                     {
                         expand: true,
-                        cwd: 'routes',
+                        cwd: 'server/routes',
                         src: ['**'],
                         dest: 'dist/routes'
                     },
                     {
                         expand: true,
                         cwd: 'web',
-                        src: ['**', '!scripts/**', '!stylesheets/**', '!templates/**'],
+                        src: ['**', '!libs/**', '!scripts/**', '!stylesheets/**', '!templates/**'],
                         dest: 'dist/web'
                     }
                 ]
@@ -145,7 +150,7 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     variables: {
-                        'activeConfig': 'beta'
+                        'activeConfig': 'prod'
                     },
                     prefix: '@@'
                 },
@@ -184,8 +189,8 @@ module.exports = function(grunt) {
         'compass',
         'concat:cssOutput',
         'replace:common',
-        'clean:removescss',
-        'clean:removehbs'
+        // 'clean:removescss',
+        // 'clean:removehbs'
     ]);
 
     grunt.registerTask('default', [

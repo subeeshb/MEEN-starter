@@ -1,0 +1,10 @@
+<ul class="todo-list">
+{{#each todoItem in todoItems}}
+	<li {{bind-attr class="todoItem.isComplete:completed"}}>
+		<a href="#" {{action toggleCompleted todoItem}}>{{todoItem.text}}</a>
+		{{#if todoItem.isComplete}}
+		<button class="delete-link" {{action deleteItem todoItem}}>Delete?</button>
+		{{/if}}
+	</li>
+{{/each}}
+</ul>

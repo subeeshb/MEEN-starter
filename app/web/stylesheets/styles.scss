@@ -21,41 +21,51 @@ html, body {
   font-size: 1.8rem;
 }
 
-.todo-item-panel {
-  margin: 3px 5px;
-  border-radius: 5px;
+.new-todo-panel {
   background-color: white;
   padding: 5px;
-}
+  margin: 5px;
 
-.todo-item {
-  @extend .todo-item-panel;
-  font-size: 1.1rem;
-  min-height: 25px;
-
-  &.completed {
-    text-decoration: line-through;
-  }
-
-  .delete-button {
-    float: right;
+  input, button {
+    font-size: 18pt;
   }
 }
 
-.new-todo-panel {
-  @extend .todo-item-panel;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+.todo-list {
+  padding: 10px;
+  font-size: 10pt;
+  list-style-type: initial;
+  list-style-position: inside;
 
-  * {
-    font-size: 1.3rem;
+  li {
+
+    &.completed {
+      text-decoration: line-through;
+      opacity: 0.3;
+    }
+  }
+}
+
+.delete-link {
+  font-size: x-small;
+}
+
+.info-panel {
+  @extend .panel;
+  margin: 10px 5px;
+  font-size: 0.8rem;
+  line-height: 1rem;
+
+  background-color: white;
+  padding: 0.3em 0.5em;
+  border-radius: 5px;
+  border: 1px solid $DARK_COLOR;
+
+  p {
+    margin: 10px 0;
   }
 
-  .add-button {
-    padding: 1px 25px;
-  }
-
-  .item-text {
-    width: 75%;
+  em {
+    font-style: italic;
   }
 }

@@ -1,0 +1,12 @@
+<h2 class="title">Todo list</h2>
+
+<div class="container">
+	<div class="info-panel">
+		<p>Use the text field below to add a new todo item, then click the buttons to mark it as completed or delete it. Doing so invokes web service methods created in Node.js using the Express application framework. To get started, you can edit the template for this page at <em>./web/templates/index.hbs</em>, or explore the web service routes defined in <em>./server/routes/api/</em>, or the web service logic in <em>./server/controllers/todo</em>.</p>
+	</div>
+
+	{{new-todo onCreate="newTodoAdded"}}
+
+	{{todo-list todoItems=model onDelete="todoItemDeleted"}}
+</div>
+
