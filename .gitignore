@@ -1,7 +1,9 @@
 app/.sass-cache/
 app/dist/
 app/node_modules/
+app/web/build/
 mongo_data/journal/
 mongo_data/mng_starter_dev.0
 mongo_data/mng_starter_dev.1
 mongo_data/mng_starter_dev.ns
+mongo_data/mongod.lock
