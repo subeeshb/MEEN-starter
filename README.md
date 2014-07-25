@@ -44,10 +44,12 @@ Folder structure
 |   +-- start mongodb.bat - Windows batch file
 |   +-- start mongodb.sh - start MongoDB (Bash shell script)
 +-- app - starter kit code
-    +-- config - set application port and MongoDB URL here
-    +-- constants - set global constant variables here
-    +-- controllers - back-end (web service) logic goes here
-    +-- routes - set routes for Express here
+    +-- server - Node.js back-end application code
+    |   +-- config - set application port and MongoDB URL here
+    |   +-- constants - set global constant variables here
+    |   +-- controllers - back-end (web service) logic goes here
+    |   +-- routes - set routes for Express here
+    |
     +-- web - Ember.js application code and resources
     |   +-- fonts - web fonts
     |   +-- images - images used in the app
