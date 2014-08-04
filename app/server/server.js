@@ -21,8 +21,7 @@ console.log('\tCollections:' + JSON.stringify(global.constants.MONGO_COLLECTIONS
 global.db = require('mongojs').connect(global.config.MONGO_URL, global.constants.MONGO_COLLECTIONS);
 
 //routes
-require('./routes/api').bindRoutes(app);
-// require('./routes/web').bindRoutes(app);
+require('./routes/api')(app);
 
 
 process.on('exit', function() {
