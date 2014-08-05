@@ -160,6 +160,61 @@ module.exports = function(grunt) {
             }
         },
 
+        jslint: { 
+          server: {
+            src: [ // some example files
+              'server/server.js',
+              'server/constants/index.js',
+              'server/config/index.js',
+              'server/controllers/**/*.js',
+              'server/routes/**/*.js'
+            ],
+            exclude: [
+            ],
+            directives: { // example directives
+              node: true,
+              todo: true,
+              white: true,  //do not care about whitespace
+              sloppy: true, //do not require 'use strict'
+              nomen: true //do not care about leading/trailing _
+            },
+            options: {
+              junit: 'lint/server-junit.xml', 
+              jslintXml: 'lint/server-jslint.xml',
+              failOnError: false, 
+              checkstyle: 'lint/server-checkstyle.xml' 
+            }
+          },
+          // lint your project's client code
+          client: {
+            src: [
+              'web/scripts/app/app.js',
+              'web/scripts/app/**/*.js',
+              'web/scripts/modules/**/*.js'
+            ],
+            directives: {
+              browser: true,
+              predef: [
+                'jQuery',
+                'Ember',
+                'Em',
+                'Handlebars',
+                'App',
+                'console'
+              ],
+              white: true,  //do not care about whitespace
+              sloppy: true, //do not require 'use strict'
+              nomen: true //do not care about leading/trailing _
+            },
+            options: {
+              junit: 'lint/client-junit.xml',
+              jslintXml: 'lint/client-jslint.xml',
+              failOnError: false,
+              checkstyle: 'lint/client-checkstyle.xml' 
+            }
+          }
+        },
+
         shell: {
             runNodeServer: {
                 command: 'node server.js',
@@ -180,6 +235,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-ember-handlebars');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-jslint');
 
     grunt.registerTask('common', [
         'clean:removedist',
@@ -189,6 +245,7 @@ module.exports = function(grunt) {
         'compass',
         'concat:cssOutput',
         'replace:common',
+        'jslint',
         // 'clean:removescss',
         // 'clean:removehbs'
     ]);
