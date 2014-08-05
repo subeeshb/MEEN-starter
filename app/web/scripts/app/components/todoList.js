@@ -3,9 +3,9 @@ App.TodoListComponent = Ember.Component.extend({
 		deleteItem: function(item) {
 			console.log('deleteItem');
 
-			var url='/api/todo/delete';
-			var data = {id: item.get('itemID')};
-			var that = this;
+			var url='/api/todo/delete',
+				data = {id: item.get('itemID')},
+				that = this;
 			Ember.$.post(url, data).then(function() {
 				that.sendAction('onDelete', item);
 			});
@@ -14,8 +14,8 @@ App.TodoListComponent = Ember.Component.extend({
 			console.log('toggleCompleted');
 			item.toggleCompleted();
 
-			var url='/api/todo/status';
-			var data = {id: item.get('itemID'), isComplete: item.get('isComplete')};
+			var url='/api/todo/status',
+				data = {id: item.get('itemID'), isComplete: item.get('isComplete')};
 			Ember.$.post(url, data);
 		}
 	}

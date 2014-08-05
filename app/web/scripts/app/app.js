@@ -6,12 +6,7 @@ App.Router.map(function() {
 });
 
 App.IndexRoute = Ember.Route.extend({
-	model: function() {
-		// var url = '/api/todo';
-		// return Ember.$.getJSON(url).then(function(data) {
-		// 	return Ember.A(data.items);
-		// });
-	}
+
 });
 
 App.IndexController = Ember.ObjectController.extend({

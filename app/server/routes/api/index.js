@@ -1,4 +1,4 @@
-api = require('./apiRoutes');
+var api = require('./apiRoutes');
 
 module.exports = function(app) {
 
