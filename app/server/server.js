@@ -2,13 +2,10 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var server = http.createServer(app);
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/web'));
-
-app.configure(function(){
-    app.use(express.bodyParser());
-    app.use(app.router);
-});
+app.use(bodyParser());
 
 global.config = require('./config');
 global.constants = require('./constants');
