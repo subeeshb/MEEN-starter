@@ -1,0 +1,10 @@
+{{#link-to 'blog'}}<button class="cancel-button">Back</button>{{/link-to}} 
+<h2 class="title">New post</h2>
+
+<div class="post-form">
+{{view Ember.TextField valueBinding="title" class="post-field" placeholder="Title"}}
+{{view Ember.TextArea valueBinding="content" class="post-field"}}
+{{view Ember.TextField valueBinding="author" class="post-field" placeholder="Author"}}
+</div>
+
+<button class="action-button" {{action savePost}}>Post</button>

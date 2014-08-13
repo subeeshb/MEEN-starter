@@ -9,6 +9,7 @@ html, body {
   height: 100%;
   background-color: $LIGHT_COLOR;
   overflow-x: hidden;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -19,6 +20,7 @@ html, body {
 
 .title {
   font-size: 1.8rem;
+  margin: 5px;
 }
 
 .new-todo-panel {
@@ -68,4 +70,70 @@ html, body {
   em {
     font-style: italic;
   }
+}
+
+.blog-post {
+  background: white;
+  margin: 5px;
+  border: 1px solid lightsteelblue;
+  border-radius: 5px;
+  padding: 5px;
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  h6 {
+    font-size: 0.7rem;
+    font-style: italic;
+    color: lightgrey;
+  }
+
+  p {
+    margin: 8px 0;
+    font-size: 0.9rem;
+  }
+}
+
+.bigass-button {
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  border: 0;
+  cursor: pointer;
+}
+
+.action-button {
+  @extend .bigass-button;
+  background: #3498db;
+  border-bottom: 2px solid #2a8bcc;
+  -webkit-box-shadow: inset 0 -2px #2a8bcc;
+  box-shadow: inset 0 -2px #2a8bcc;
+}
+
+.cancel-button {
+  @extend .bigass-button;
+  background: #9CA1A5;
+  border-bottom: 2px solid #6A6C6D;
+  -webkit-box-shadow: inset 0 -2px #6A6C6D;
+  box-shadow: inset 0 -2px #6A6C6D;
+}
+
+.post-form {
+  display: block;
+  padding-right: 13px;
+
+  .post-field {
+    font-size: 1rem;
+    width: 100%;
+    margin: 5px;
+  }
+
 }
