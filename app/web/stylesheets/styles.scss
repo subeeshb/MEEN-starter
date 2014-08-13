@@ -55,13 +55,9 @@ html, body {
 .info-panel {
   @extend .panel;
   margin: 10px 5px;
-  font-size: 0.8rem;
-  line-height: 1rem;
-
-  background-color: white;
+  font-size: 0.9rem;
+  line-height: 1.1rem;
   padding: 0.3em 0.5em;
-  border-radius: 5px;
-  border: 1px solid $DARK_COLOR;
 
   p {
     margin: 10px 0;
