@@ -1,0 +1,12 @@
+{{#link-to 'index'}}<button class="cancel-button">Back</button>{{/link-to}} 
+<h2 class="title">My Blog</h2>
+
+{{#link-to 'blog.write'}}<button class="action-button">New post</button>{{/link-to}}
+
+<div class="posts">
+
+{{#each post in model.posts}}
+	{{blog-post post=post}}
+{{/each}}
+	
+</div>

@@ -4,9 +4,9 @@ App.NewTodoComponent = Ember.Component.extend({
 		createTodo: function() {
 			console.log('Creating new todo...');
 
-			var url='/api/todo/new';
-			var that = this;
-			var newItemData = {text: this.get('title')};
+			var url='/api/todo/new',
+				that = this,
+				newItemData = {text: this.get('title')};
 			
 			Ember.$.post(url, newItemData).then(function(data) {
 				var newTodo = App.TodoModel.create({

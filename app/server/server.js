@@ -2,13 +2,10 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var server = http.createServer(app);
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/web'));
-
-app.configure(function(){
-    app.use(express.bodyParser());
-    app.use(app.router);
-});
+app.use(bodyParser());
 
 global.config = require('./config');
 global.constants = require('./constants');
@@ -21,8 +18,7 @@ console.log('\tCollections:' + JSON.stringify(global.constants.MONGO_COLLECTIONS
 global.db = require('mongojs').connect(global.config.MONGO_URL, global.constants.MONGO_COLLECTIONS);
 
 //routes
-require('./routes/api').bindRoutes(app);
-// require('./routes/web').bindRoutes(app);
+require('./routes/api')(app);
 
 
 process.on('exit', function() {
