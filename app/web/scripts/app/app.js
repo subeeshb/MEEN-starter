@@ -10,13 +10,5 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-	actions: {
-		newItemAdded: function(item) {
-			this.get('model').pushObject(item);
-		},
 
-		itemDeleted: function(removedItem) {
-			this.get('model').removeObject(removedItem);
-		}
-	}
 });
