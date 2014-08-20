@@ -1,7 +1,7 @@
 MEEN Starter Kit
 ================
 
-(Version 0.3)
+(Version 0.3.1)
 
 A starter kit for creating web applications using MongoDB, Ember.js, Express and Node.js.
 

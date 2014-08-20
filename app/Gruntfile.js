@@ -71,7 +71,6 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: '.',
                         src: [
-                            'server/server.js',
                             'package.json',
                             'Procfile'
                         ],
@@ -121,7 +120,8 @@ module.exports = function(grunt) {
         clean: {
             removedist: ["dist/"],
             removescss: ["web/stylesheets/css", "dist/web/stylesheets/*.scss"],
-            removehbs: ["web/templates/js", "dist/web/templates/html"]
+            removehbs: ["web/templates/js", "dist/web/templates/html"],
+            removebuildfiles: ['dist/*', '!dist/*.zip']
         },
 
         replace: {
@@ -215,6 +215,22 @@ module.exports = function(grunt) {
           }
         },
 
+        uglify: {
+            options: {
+              mangle: {
+                except: ['jQuery', 'Ember', 'Handlebars']
+              },
+              compress: {
+                drop_console: true
+              }
+            },
+            prod_web: {
+              files: {
+                'dist/web/scripts/app.js': ['dist/web/scripts/app.js']
+              }
+            }
+        },
+
         shell: {
             runNodeServer: {
                 command: 'node server.js',
@@ -225,6 +241,36 @@ module.exports = function(grunt) {
                     }
                 },
             }
+        },
+
+        imagemin: {
+            dist: {
+                options: { optimizationLevel: 4 },
+                files: [{
+                    expand: true,
+                    cwd: 'dist/web/images',
+                    src: [
+                        '*.{png,jpg}'
+                    ],
+                    dest: 'dist/web/images/'
+                }]
+            }
+        },
+
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/web/index.html': 'dist/web/index.html'
+                }
+            }
+        },
+
+        zip: {
+            'dist/<%= pkg.name %>.zip': ['dist/**']
         }
     });
 
@@ -236,6 +282,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ember-handlebars');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
     grunt.registerTask('common', [
         'clean:removedist',
@@ -258,6 +308,15 @@ module.exports = function(grunt) {
 
     grunt.registerTask('prod', [
         'common',
-        'replace:prod'
+        'replace:prod',
+        'uglify',
+        'imagemin',
+        'htmlmin'
+    ]);
+
+    grunt.registerTask('package', [
+        'prod',
+        'zip',
+        'clean:removebuildfiles'
     ]);
 };
