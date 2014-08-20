@@ -215,6 +215,22 @@ module.exports = function(grunt) {
           }
         },
 
+        uglify: {
+            options: {
+              mangle: {
+                except: ['jQuery', 'Ember', 'Handlebars']
+              },
+              compress: {
+                drop_console: true
+              }
+            },
+            prod_web: {
+              files: {
+                'dist/web/scripts/app.js': ['dist/web/scripts/app.js']
+              }
+            }
+        },
+
         shell: {
             runNodeServer: {
                 command: 'node server.js',
@@ -236,6 +252,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ember-handlebars');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('common', [
         'clean:removedist',
@@ -258,6 +275,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('prod', [
         'common',
-        'replace:prod'
+        'replace:prod',
+        'uglify'
     ]);
 };
