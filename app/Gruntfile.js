@@ -243,6 +243,32 @@ module.exports = function(grunt) {
             }
         },
 
+        imagemin: {
+            dist: {
+                options: { optimizationLevel: 4 },
+                files: [{
+                    expand: true,
+                    cwd: 'dist/web/images',
+                    src: [
+                        '*.{png,jpg}'
+                    ],
+                    dest: 'dist/web/images/'
+                }]
+            }
+        },
+
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/web/index.html': 'dist/web/index.html'
+                }
+            }
+        },
+
         zip: {
             'dist/<%= pkg.name %>.zip': ['dist/**']
         }
@@ -258,6 +284,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
     grunt.registerTask('common', [
         'clean:removedist',
@@ -281,7 +309,9 @@ module.exports = function(grunt) {
     grunt.registerTask('prod', [
         'common',
         'replace:prod',
-        'uglify'
+        'uglify',
+        'imagemin',
+        'htmlmin'
     ]);
 
     grunt.registerTask('package', [
