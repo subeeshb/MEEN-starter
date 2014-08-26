@@ -33,9 +33,9 @@ module.exports = function(grunt) {
         concat: {
             library:{
                 src:[
-                    'web/libs/jquery.min.js',
-                    'web/libs/handlebars-1.1.2.js',
-                    'web/libs/ember-1.6.1.js'
+                    'web/libs/<%= grunt.config("lib_jquery") %>',
+                    'web/libs/<%= grunt.config("lib_hbs") %>',
+                    'web/libs/<%= grunt.config("lib_ember") %>' 
                     ],
                 dest:'dist/web/scripts/libs.js'
             },
@@ -269,6 +269,12 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            frontend_unit: {
+              configFile: 'fe.karma.conf.js'
+            }
+        },
+
         zip: {
             'dist/<%= pkg.name %>.zip': ['dist/**']
         }
@@ -286,6 +292,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-karma');
+
+    grunt.registerTask('set_conf', 'Set a config property.', function(name, val) {
+        console.log('Setting ' + name + ' to ' + val);
+        grunt.config.set(name, val);
+    });
 
     grunt.registerTask('common', [
         'clean:removedist',
@@ -301,17 +313,24 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default', [
+        'set_conf:lib_ember:ember-1.7.js',
+        'set_conf:lib_jquery:jquery-2.1.1.js',
+        'set_conf:lib_hbs:handlebars-v1.3.0.js',
         'common',
         'replace:dev',
         'shell:runNodeServer'
     ]);
 
     grunt.registerTask('prod', [
+        'set_conf:lib_ember:ember-1.7.min.js',
+        'set_conf:lib_jquery:jquery-2.1.1.min.js',
+        'set_conf:lib_hbs:handlebars.runtime-v1.3.0.js',
         'common',
         'replace:prod',
         'uglify',
         'imagemin',
-        'htmlmin'
+        'htmlmin',
+        'karma'
     ]);
 
     grunt.registerTask('package', [
