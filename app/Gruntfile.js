@@ -329,7 +329,8 @@ module.exports = function(grunt) {
         'replace:prod',
         'uglify',
         'imagemin',
-        'htmlmin'
+        'htmlmin',
+        'karma'
     ]);
 
     grunt.registerTask('package', [
