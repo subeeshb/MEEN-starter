@@ -8,3 +8,4 @@ mongo_data/mng_starter_dev.1
 mongo_data/mng_starter_dev.ns
 mongo_data/mongod.lock
 app/lint/*
+app/qa

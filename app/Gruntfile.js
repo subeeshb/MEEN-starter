@@ -269,6 +269,12 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            frontend_unit: {
+              configFile: 'fe.karma.conf.js'
+            }
+        },
+
         zip: {
             'dist/<%= pkg.name %>.zip': ['dist/**']
         }
@@ -286,6 +292,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('set_conf', 'Set a config property.', function(name, val) {
         console.log('Setting ' + name + ' to ' + val);
