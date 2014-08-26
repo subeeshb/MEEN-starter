@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         concat: {
             library:{
                 src:[
-                    'web/libs/jquery.min.js',
+                    'web/libs/jquery-2.1.1.min.js',
                     'web/libs/handlebars-v1.3.0.js',
                     'web/libs/ember-1.7.js'
                     ],
